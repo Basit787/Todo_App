@@ -1,0 +1,16 @@
+version: "3.8"
+
+services:
+  todo-backend:
+    image: mongo
+    container_name: todo_backend
+    ports:
+      - 27017:27017
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: todoapp
+      MONGO_INITDB_ROOT_PASSWORD: secretpass
+    volumes:
+      - mongodb-data:/data/db
+
+volumes:
+  mongodb-data:
