@@ -34,13 +34,19 @@ Instructions to set up the project locally:
 1. **Clone the repository**:
 
    ```bash
-   git clone <repository-url>
+   git clone https://github.com/Basit787/Todo_App.git
    ```
 
 2. **Navigate to the project directory**:
 
    ```bash
-   cd <project-directory>
+   //for frontend
+   cd todo
+   ```
+
+   ```bash
+   //for backend
+   cd backend
    ```
 
 3. **Install dependencies**:
