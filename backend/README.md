@@ -47,7 +47,7 @@ Before running this application, ensure you have:
 - Run Docker to start MongoDB:
 
 ```bash
-docker run --name mongodb -d -p 27017:27017 -e MONGO_INITDB_ROOT_USERNAME=todoapp -e MONGO_INITDB_ROOT_PASSWORD=secretpass mongo
+docker compose up
 ```
 
 - npm or yarn package manager
