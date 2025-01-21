@@ -14,9 +14,8 @@ A mobile application built with React Native that helps users manage their daily
 
 ## Features
 
-- Create, Read, Update, and Delete todos
-- Mark tasks as complete/incomplete
-- Persistent storage of todos
+- Create, Read and Delete todos
+- Mark tasks as completed
 - Clean and intuitive user interface
 - Cross-platform support (iOS & Android)
 
@@ -38,8 +37,8 @@ A mobile application built with React Native that helps users manage their daily
 1. **Clone the repository:**
 
    ```bash
-   git clone <repository-url>
-   cd todo-app
+   git clone https://github.com/Basit787/Todo_App.git
+   cd todo
    ```
 
 2. **Install dependencies:**
@@ -98,25 +97,19 @@ A mobile application built with React Native that helps users manage their daily
 
 ```
 src/
+├── apis/    # Api instance
 ├── components/    # Reusable components
 ├── screens/       # Screen components
-├── navigation/    # Navigation configuration
-├── services/     # API and other services
 ├── utils/        # Utility functions
-└── types/        # TypeScript type definitions
+└── zod/        # validations
 ```
 
 **Key Features Implementation:**
 
 - **Todo Management:**
   - Create new todos with title and description
-  - Mark todos as complete/incomplete
-  - Edit existing todos
+  - Mark todos as completed
   - Delete todos
-
-- **Data Persistence:**
-  - Todos are stored locally using AsyncStorage
-  - Automatic data loading on app launch
 
 ## Testing
 
@@ -172,13 +165,3 @@ cd android
     rm -rf node_modules
     npm install
     ```
-
-## Contributing
-
-1. Fork the repository
-2. Create your feature branch
-3. Commit your changes
-4. Push to the branch
-5. Create a Pull Request
-
-For more detailed instructions, refer to the [React Native Todo App README](https://github.com/ghoshabhi/react-native-todo-app).  
