@@ -38,12 +38,12 @@ Instructions to set up the project locally:
    ```
 
 2. **Navigate to the project directory**:
-### For frontend
+- For frontend
    ```bash
    cd todo
    ```
 
-### For backend
+- For backend
    ```bash
    cd backend
    ```
