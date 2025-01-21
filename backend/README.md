@@ -1,6 +1,5 @@
 Here is the complete and properly formatted `README.md` for your Todo App Backend:
 
-````markdown
 # Todo App Backend
 
 A backend REST API service for the Todo application built with TypeScript and Hono.js.
@@ -50,7 +49,6 @@ Before running this application, ensure you have:
 ```bash
 docker run --name mongodb -d -p 27017:27017 -e MONGO_INITDB_ROOT_USERNAME=todoapp -e MONGO_INITDB_ROOT_PASSWORD=secretpass mongo
 ```
-````
 
 - npm or yarn package manager
 - TypeScript knowledge for development
