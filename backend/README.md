@@ -68,8 +68,9 @@ JWT_SECRET=your_jwt_secret_key
 1. Clone the repository:
 
 ```bash
-git clone <repository-url>
-cd todo-app-backend
+git clone https://github.com/Basit787/Todo_App.git
+
+cd backend
 ```
 
 2. Install dependencies:
