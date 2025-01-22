@@ -69,7 +69,7 @@ Instructions to set up the project locally:
    npm start
 
    # For backend
-   npm run server
+   npm run dev
    ```
 
 ## Usage
