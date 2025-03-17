@@ -1,7 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import {View} from 'react-native';
 import {Card, Searchbar, Text} from 'react-native-paper';
-import ApiInstance from '../../apis/request';
 import styles from './TodoHeaderStyles';
 
 interface TodoHeaderProps {
@@ -26,12 +25,12 @@ const TodoHeader: React.FC<TodoHeaderProps> = ({
   const [user, setUser] = useState<User | null>(null);
 
   const getUserDetails = async () => {
-    try {
-      const result = await ApiInstance.get('/user/getUserDetails');
-      setUser(result?.data?.result);
-    } catch (error) {
-      console.error(error);
-    }
+    // try {
+    //   const result = await ApiInstance.get('/user/getUserDetails');
+    //   setUser(result?.data?.result);
+    // } catch (error) {
+    //   console.error(error);
+    // }
   };
 
   useEffect(() => {

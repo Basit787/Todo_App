@@ -1,14 +1,12 @@
-import React, {useState, useContext} from 'react';
-import {View, Text} from 'react-native';
-import {Controller, useForm} from 'react-hook-form';
-import {RadioButton, HelperText, Button} from 'react-native-paper';
 import {zodResolver} from '@hookform/resolvers/zod';
-import {TodoFormValues, todoSchema} from '../../zod/AddTodoForm';
-import ApiInstance from '../../apis/request';
-import TextField from '../../components/TextField';
-import {SnackbarContext} from '../../components/Snackbar';
-import styles from './AddTodoStyles';
+import React, {useState} from 'react';
+import {Controller, useForm} from 'react-hook-form';
+import {Text, View} from 'react-native';
 import DatePicker from 'react-native-date-picker';
+import {Button, HelperText, RadioButton} from 'react-native-paper';
+import TextField from '../../components/TextField';
+import {TodoFormValues, todoSchema} from '../../zod/AddTodoForm';
+import styles from './AddTodoStyles';
 
 const AddTodoForm = ({navigation}: {navigation: any}) => {
   const {
@@ -27,23 +25,9 @@ const AddTodoForm = ({navigation}: {navigation: any}) => {
 
   const [open, setOpen] = useState(false);
   const [date, setDate] = useState(new Date());
-  const {showSnackbar} = useContext(SnackbarContext);
 
   const onSubmit = async (data: TodoFormValues) => {
-    try {
-      const result = await ApiInstance.post('/todo/createTodo', data);
-      navigation.goBack();
-      showSnackbar('Todo added successfully');
-    } catch (error: any) {
-      if (error.response) {
-        console.log('Error data:', error.response.data);
-        console.log('Error status:', error.response.status);
-      } else if (error.request) {
-        console.log('Request error:', error.request);
-      } else {
-        console.log('Error message:', error.message);
-      }
-    }
+    console.log(data);
   };
 
   return (

@@ -11,14 +11,11 @@ type SceneProps = {
   navigation: NavigationProp<ParamListBase>;
 };
 
-// Update the wrapper components to pass navigation
 const TodosWrapper: React.FC<SceneProps> = ({navigation, ...props}) => (
   <Todos navigation={navigation} {...props} />
 );
 
-const ProfileWrapper: React.FC<SceneProps> = ({navigation, ...props}) => (
-  <Profile navigation={navigation} {...props} />
-);
+const ProfileWrapper: React.FC = () => <Profile />;
 
 type HomeScreenProps = {
   navigation: NavigationProp<ParamListBase>;
@@ -41,10 +38,9 @@ const Home: React.FC<HomeScreenProps> = ({navigation}) => {
     },
   ]);
 
-  // Create scene rendering function that includes navigation
   const renderScene = BottomNavigation.SceneMap({
     todos: props => <TodosWrapper {...props} navigation={navigation} />,
-    profile: props => <ProfileWrapper {...props} navigation={navigation} />,
+    profile: () => <ProfileWrapper />,
   });
 
   return (

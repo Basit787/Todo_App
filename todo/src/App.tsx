@@ -1,36 +1,37 @@
-import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import React from 'react';
-import Signin from './screens/auth/Signin';
-import Signup from './screens/auth/Signup';
-import Home from './screens/Home';
-import AddTodoForm from './screens/todo/AddTodos';
-
-const Stack = createNativeStackNavigator();
-
-const NavigationRoutes = () => {
-  return (
-    <Stack.Navigator
-      initialRouteName="Signin"
-      screenOptions={{headerShown: false}}>
-      <Stack.Screen name="Signin" component={Signin} />
-      <Stack.Screen name="Signup" component={Signup} />
-    </Stack.Navigator>
-  );
-};
+import {SafeAreaProvider, SafeAreaView} from 'react-native-safe-area-context';
+import IndexProvider from './context/index-provider';
+import {useColorScheme} from 'react-native';
+import {MD3DarkTheme, MD3LightTheme, PaperProvider} from 'react-native-paper';
+import {NavigationContainer} from '@react-navigation/native';
+import useAppStateFocus from './hooks/useAppStateFocus';
+import {QueryClientProvider} from '@tanstack/react-query';
+import {queryClient} from './services/client';
+import useOnlineManager from './hooks/useOnlineManager';
+import AppNavigator from './navigation/AppNavigator';
 
 const App = () => {
+  const colorScheme = useColorScheme();
+  useAppStateFocus();
+  useOnlineManager();
+
+  const paperTheme =
+    colorScheme === 'dark' ? {...MD3DarkTheme} : {...MD3LightTheme};
+
   return (
-    <Stack.Navigator
-      initialRouteName="NavigationRoutes"
-      screenOptions={{headerShown: false}}>
-      <Stack.Screen name="Home" component={Home} />
-      <Stack.Screen
-        name="AddTodo"
-        component={AddTodoForm}
-        options={{headerShown: true}}
-      />
-      <Stack.Screen name="NavigationRoutes" component={NavigationRoutes} />
-    </Stack.Navigator>
+    <PaperProvider theme={paperTheme}>
+      <SafeAreaProvider>
+        <SafeAreaView style={{flex: 1}}>
+          <QueryClientProvider client={queryClient}>
+            <NavigationContainer>
+              <IndexProvider>
+                <AppNavigator />
+              </IndexProvider>
+            </NavigationContainer>
+          </QueryClientProvider>
+        </SafeAreaView>
+      </SafeAreaProvider>
+    </PaperProvider>
   );
 };
 

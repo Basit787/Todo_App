@@ -1,10 +1,8 @@
-import React, {useContext, useEffect, useState} from 'react';
+import {useIsFocused} from '@react-navigation/native';
+import React, {useEffect, useState} from 'react';
 import {Button, FlatList, SafeAreaView, Text, View} from 'react-native';
 import {FAB} from 'react-native-paper';
-import ApiInstance from '../../apis/request';
 import TodoHeader from './TodoHeader';
-import {SnackbarContext} from '../../components/Snackbar';
-import {useIsFocused} from '@react-navigation/native';
 import styles from './TodosStyles';
 
 interface Todo {
@@ -23,17 +21,15 @@ const Todos = ({navigation}: {navigation: any}) => {
   const [filteredTodos, setFilteredTodos] = useState<Todo[]>([]);
   const isFocused = useIsFocused();
 
-  const {showSnackbar} = useContext(SnackbarContext);
-
   const getTodos = async () => {
-    try {
-      const result = await ApiInstance.get('/todo/getAllTodos');
-      const fetchedTodos = result.data.result || [];
-      setTodos(fetchedTodos);
-      setFilteredTodos(fetchedTodos);
-    } catch (error) {
-      console.error('Error while fetching todos', error);
-    }
+    // try {
+    //   const result = await ApiInstance.get('/todo/getAllTodos');
+    //   const fetchedTodos = result.data.result || [];
+    //   setTodos(fetchedTodos);
+    //   setFilteredTodos(fetchedTodos);
+    // } catch (error) {
+    //   console.error('Error while fetching todos', error);
+    // }
   };
 
   useEffect(() => {
@@ -50,25 +46,25 @@ const Todos = ({navigation}: {navigation: any}) => {
   }, [searchQuery, todos]);
 
   const handleComplete = async (id: string, title: string) => {
-    try {
-      await ApiInstance.put(`/todo/updateTodo/${id}`, {completed: true});
-      showSnackbar(`${title} completed successfully`);
-      getTodos();
-    } catch (error) {
-      console.error('Error completing todo:', error);
-      showSnackbar(`Failed to complete ${title}`);
-    }
+    // try {
+    //   await ApiInstance.put(`/todo/updateTodo/${id}`, {completed: true});
+    //   showSnackbar(`${title} completed successfully`);
+    //   getTodos();
+    // } catch (error) {
+    //   console.error('Error completing todo:', error);
+    //   showSnackbar(`Failed to complete ${title}`);
+    // }
   };
 
   const handleDelete = async (id: string, title: string) => {
-    try {
-      await ApiInstance.delete(`/todo/deleteTodo/${id}`);
-      showSnackbar(`${title} deleted successfully`);
-      getTodos();
-    } catch (error) {
-      showSnackbar(`Failed to delete ${title}`);
-      console.error('Error deleting todo:', error);
-    }
+    // try {
+    //   await ApiInstance.delete(`/todo/deleteTodo/${id}`);
+    //   showSnackbar(`${title} deleted successfully`);
+    //   getTodos();
+    // } catch (error) {
+    //   showSnackbar(`Failed to delete ${title}`);
+    //   console.error('Error deleting todo:', error);
+    // }
   };
 
   const pendingCount = todos.filter(todo => !todo.completed).length;

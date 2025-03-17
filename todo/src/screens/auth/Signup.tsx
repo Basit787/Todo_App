@@ -1,15 +1,12 @@
 import {zodResolver} from '@hookform/resolvers/zod';
-import React, {useContext} from 'react';
+import React from 'react';
 import {Controller, useForm} from 'react-hook-form';
 import {StyleSheet, Text, View} from 'react-native';
 import {Button, Card, Divider} from 'react-native-paper';
 import TextField from '../../components/TextField';
 import {SignupFormData, signupSchema} from '../../zod/SignupValidation';
-import ApiInstance from '../../apis/request';
-import {storeToken} from '../../utils/tokenHandler';
-import {SnackbarContext} from '../../components/Snackbar';
 
-const Signup = ({navigation}: {navigation: any}) => {
+const Signup = () => {
   const {
     control,
     handleSubmit,
@@ -18,24 +15,8 @@ const Signup = ({navigation}: {navigation: any}) => {
     resolver: zodResolver(signupSchema),
   });
 
-  const {showSnackbar} = useContext(SnackbarContext);
   const onSubmit = async (data: SignupFormData) => {
-    try {
-      const result = await ApiInstance.post('/user/createUser', data);
-      await storeToken(result.data.token);
-      navigation.navigate('Home');
-      showSnackbar(`Welcome ${data.name}`);
-    } catch (error: any) {
-      if (error.response) {
-        console.log('Error data:', error.response.data);
-        showSnackbar('User already exists');
-        console.log('Error status:', error.response.status);
-      } else if (error.request) {
-        console.log('Request error:', error.request);
-      } else {
-        console.log('Error message:', error.message);
-      }
-    }
+    console.log(data);
   };
 
   return (
@@ -122,9 +103,7 @@ const Signup = ({navigation}: {navigation: any}) => {
           {/* Signin Link */}
           <Text style={styles.signinText}>
             Already have an account?{' '}
-            <Text
-              style={styles.signinLink}
-              onPress={() => navigation.navigate('Signin')}>
+            <Text style={styles.signinLink} onPress={() => {}}>
               Signin
             </Text>
           </Text>

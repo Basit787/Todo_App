@@ -1,15 +1,12 @@
 import {zodResolver} from '@hookform/resolvers/zod';
-import React, {useContext} from 'react';
+import React from 'react';
 import {Controller, useForm} from 'react-hook-form';
 import {StyleSheet, View} from 'react-native';
 import {Button, Card, Divider, Text} from 'react-native-paper';
 import TextField from '../../components/TextField';
 import {SigninFormData, signInSchema} from '../../zod/SigninValidation';
-import {storeToken} from '../../utils/tokenHandler';
-import ApiInstance from '../../apis/request';
-import {SnackbarContext} from '../../components/Snackbar';
 
-const Signin = ({navigation}: {navigation: any}) => {
+const Signin = () => {
   const {
     control,
     handleSubmit,
@@ -18,25 +15,8 @@ const Signin = ({navigation}: {navigation: any}) => {
     resolver: zodResolver(signInSchema),
   });
 
-  const {showSnackbar} = useContext(SnackbarContext);
-
   const onSubmit = async (data: SigninFormData) => {
-    try {
-      const result = await ApiInstance.post('/auth', data);
-      await storeToken(result.data.data.token);
-      showSnackbar('Welcome back');
-      navigation.navigate('Home');
-    } catch (error: any) {
-      if (error.response) {
-        console.log('Error data:', error.response.data);
-        showSnackbar('Password not matched');
-        console.log('Error status:', error.response.status);
-      } else if (error.request) {
-        console.log('Request error:', error.request);
-      } else {
-        console.log('Error message:', error.message);
-      }
-    }
+    console.log(data);
   };
 
   return (
@@ -90,9 +70,7 @@ const Signin = ({navigation}: {navigation: any}) => {
           {/* Signup Link */}
           <Text style={styles.signinText}>
             New user!{' '}
-            <Text
-              style={styles.signinLink}
-              onPress={() => navigation.navigate('Signup')}>
+            <Text style={styles.signinLink} onPress={() => {}}>
               Signup
             </Text>
           </Text>
