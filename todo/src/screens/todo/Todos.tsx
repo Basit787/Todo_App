@@ -112,7 +112,7 @@ const Todos = ({navigation}: {navigation: any}) => {
   );
 
   return (
-    <SafeAreaView>
+    <SafeAreaView style={{flex:1}}>
       <FlatList
         data={filteredTodos}
         keyExtractor={item => item._id}

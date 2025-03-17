@@ -3,7 +3,6 @@ import {StyleSheet} from 'react-native';
 const TodoStyles = StyleSheet.create({
   container: {
     padding: 16,
-    backgroundColor: '#f5f5f5',
   },
   todoContainer: {
     backgroundColor: '#fff',
